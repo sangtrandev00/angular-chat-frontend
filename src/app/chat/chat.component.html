@@ -1,0 +1,33 @@
+<div class="chat-container">
+  <div *ngIf="!userId">
+    <input [(ngModel)]="username" placeholder="Enter username" />
+    <button (click)="createUser()">Join Chat</button>
+    <button (click)="notifyAllUser()">Say hello to all User</button>
+  </div>
+  <div *ngIf="userId">
+    <input [(ngModel)]="roomId" placeholder="Enter room ID" />
+    <button (click)="joinRoom()">Join Room</button>
+    <button (click)="leaveRoom()">Leave Room</button>
+    <div class="messages">
+      <div *ngFor="let message of messages" class="message">
+        <strong>{{ message.username }}:</strong> {{ message.message }}
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        placeholder="Type a message..."
+      />
+      <button (click)="sendMessage()">Send</button>
+      <button (click)="sendNotify()">Send Noti</button>
+    </div>
+
+
+    <div class="notifications">
+      <div *ngFor="let message of messages" class="message">
+        <strong>{{ message.username }}:</strong> {{ message.message }}
+      </div>
+    </div>
+  </div>
+</div>
